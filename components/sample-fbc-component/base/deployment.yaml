@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: sample-fbc-component
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: sample-fbc-component
+    app.kubernetes.io/part-of: sample-fbc-application
+  name: sample-fbc-component
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: fbc
+      app.kubernetes.io/instance: sample-fbc-component
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fbc
+        app.kubernetes.io/instance: sample-fbc-component
+    spec:
+      containers:
+      - image: fbc:latest
+        name: fbc
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 512Mi
+status: {}
